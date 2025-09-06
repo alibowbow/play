@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>광주 함박스테이크 맛집 추천 | 딸과 함께 가기 좋은 곳 (Pastel)</title>
+<style>
+  :root{
+    /* Pastel palette */
+    --bg-start:#fdfbff;
+    --bg-mid:#f7faff;
+    --bg-end:#fff7fb;
+
+    --card:#ffffff;
+    --border:#e6e9f4;
+    --soft-border:#edf1fd;
+
+    --text:#27324b;
+    --muted:#6d7898;
+
+    --accent:#6fc6ff;
+    --accent-hover:#58b5f5;
+    --accent-ghost:#e9f6ff;
+    --accent-border:#cfe9ff;
+
+    --chip:#eef4ff;
+    --chip-border:#d9e6ff;
+
+    --good-bg:#eafaf0;
+    --good-border:#c6efd9;
+
+    --warn-bg:#fff6e8;
+    --warn-border:#ffe2b0;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Pretendard,'Noto Sans KR','Apple SD Gothic Neo',sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(1200px 600px at 10% -10%, #fff4ff 0%, transparent 60%),
+      radial-gradient(1200px 700px at 90% 0%, #f0fbff 0%, transparent 60%),
+      linear-gradient(180deg,var(--bg-start), var(--bg-mid) 40%, var(--bg-end) 100%);
+  }
+
+  header{
+    position:sticky;top:0;z-index:10;
+    background:rgba(255,255,255,.75);
+    backdrop-filter:saturate(150%) blur(10px);
+    border-bottom:1px solid var(--soft-border);
+  }
+  .wrap{max-width:1100px;margin:0 auto;padding:18px}
+  h1{margin:0;font-size:22px;display:flex;gap:10px;align-items:center}
+  h1 .sub{font-size:13px;color:var(--muted);font-weight:500}
+
+  .controls{
+    display:grid;grid-template-columns:1fr 220px 220px;gap:10px;margin-top:14px
+  }
+  .search{
+    display:flex;align-items:center;gap:8px;
+    background:#fff;border:1px solid var(--soft-border);border-radius:12px;padding:12px 14px;
+    box-shadow:0 6px 20px rgba(90,120,200,.08);
+  }
+  .search input{all:unset;flex:1;color:var(--text)}
+  .select{
+    appearance:none;background:#fff;border:1px solid var(--soft-border);border-radius:12px;color:var(--text);padding:12px 14px;
+    box-shadow:0 6px 20px rgba(90,120,200,.06);
+  }
+  .hint{margin-top:8px;color:var(--muted);font-size:12px}
+
+  .legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+  .pill{
+    display:inline-flex;gap:6px;align-items:center;
+    font-size:12px;color:#215239;background:var(--good-bg);border:1px solid var(--good-border);
+    padding:6px 10px;border-radius:999px
+  }
+  .warn{color:#7a5712;background:var(--warn-bg);border-color:var(--warn-border)}
+
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;padding:20px 0}
+  .card{
+    grid-column:span 12;background:var(--card);
+    border:1px solid var(--border);border-radius:18px;overflow:hidden;
+    box-shadow:0 10px 30px rgba(120,140,200,.12);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(120,140,200,.18)}
+  @media(min-width:720px){.card{grid-column:span 6}}
+  @media(min-width:1000px){.card{grid-column:span 4}}
+
+  .top{display:flex;gap:12px;padding:16px 16px 10px;border-bottom:1px solid var(--soft-border);background:linear-gradient(180deg,#ffffff, #fbfdff)}
+  .badge{
+    font-size:12px;color:#2d5c88;background:var(--accent-ghost);
+    border:1px solid var(--accent-border);padding:4px 8px;border-radius:999px;white-space:nowrap
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .chip{
+    font-size:11px;color:#3a4b7a;background:var(--chip);
+    border:1px solid var(--chip-border);padding:5px 9px;border-radius:999px
+  }
+  .title{font-size:18px;font-weight:800;display:flex;gap:8px;align-items:center}
+  .loc{color:var(--muted);font-size:13px;margin-top:4px}
+
+  .body{padding:14px 16px 6px;display:grid;gap:10px}
+  .row{display:flex;gap:10px;align-items:flex-start}
+  .key{min-width:78px;color:#6275a3;font-size:13px}
+  .val{font-size:14px;line-height:1.6}
+
+  .actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 16px 16px}
+  .btn{
+    all:unset;cursor:pointer;padding:10px 14px;border:1px solid var(--accent-border);
+    border-radius:12px;background:var(--accent-ghost);color:#154c74;font-weight:700;font-size:13px
+  }
+  .btn:hover{background:#e3f3ff}
+  .btn.primary{background:var(--accent);color:#fff;border-color:transparent}
+  .btn.primary:hover{background:var(--accent-hover)}
+  .btn.secondary{background:#f4f1ff;color:#4b3f79;border-color:#e3dcff}
+  .empty{
+    color:var(--muted);padding:40px;text-align:center;border:1px dashed var(--soft-border);
+    border-radius:14px;background:#fff;box-shadow:0 6px 18px rgba(120,140,200,.08)
+  }
+  footer{border-top:1px solid var(--soft-border)}
+  /* Accessibility */
+  .search:focus-within,.select:focus{outline:3px solid #cfe9ff;outline-offset:2px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>🍽️ 광주 함박스테이크 맛집 추천 <span class="sub">딸과 함께 가기 좋은 곳 모음</span></h1>
+    <div class="controls">
+      <label class="search" aria-label="검색">
+        <span>🔎</span>
+        <input id="q" placeholder="가게명, 지역(동명동/수완동/봉선동 등), 키워드(복고/프리미엄/가성비…)" />
+      </label>
+      <select id="mood" class="select" aria-label="분위기 필터">
+        <option value="">분위기 전체</option>
+        <option value="캐주얼">캐주얼</option>
+        <option value="감성">감성</option>
+        <option value="프리미엄">프리미엄</option>
+        <option value="복고">복고</option>
+      </select>
+      <select id="wait" class="select" aria-label="웨이팅/예약">
+        <option value="">웨이팅/예약</option>
+        <option value="예약가능">예약 가능</option>
+        <option value="웨이팅빈번">웨이팅 빈번</option>
+        <option value="선착순">선착순</option>
+      </select>
+    </div>
+    <div class="legend">
+      <span class="pill">✅ 가족친화</span>
+      <span class="pill warn">⏳ 인기시간 웨이팅</span>
+      <span class="pill">📞 예약 권장</span>
+    </div>
+    <div class="hint">💡 팁: “동명동”, “프리미엄”, “가성비” 같은 키워드로 빠르게 추려보세요.</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="list" class="grid"></section>
+  <div id="empty" class="empty" style="display:none">검색 조건에 맞는 결과가 없습니다. 키워드를 바꿔보세요 😊</div>
+</main>
+
+<footer>
+  <div class="wrap" style="font-size:12px;color:var(--muted);padding:16px 0 28px">
+    ⚠️ 영업시간·가격·예약 정책은 변동될 수 있습니다. 방문 전 전화/인스타 확인을 권장드립니다.
+  </div>
+</footer>
+
+<script>
+/* 데이터 원본 */
+const DATA = [
+  {
+    name:"아이다요", area:"동구 동명동", vibe:["감성","캐주얼"], flags:["가족친화"], 
+    price:"함박 15,000원 (정식 16,000원) 등",
+    moodNote:"아이보리+우드톤의 모던 가정식 감성",
+    why:"24시간 수비드·두툼한 수제 함박, 데미글라스 풍미 👍",
+    wait:"선착순", waitNote:"주말 식사시간 혼잡 가능",
+    reserve:"불가",
+    tips:["유아의자 있음","셀프바 운영","동명동 카페거리 산책 코스"],
+    map:"https://www.google.com/maps/search/?api=1&query=%EC%95%84%EC%9D%B4%EB%8B%A4%EC%9A%94%20%EB%8F%99%EB%AA%85%EB%8F%99"
+  },
+  {
+    name:"돈워리비해피", area:"동구 지산동(조선대 후문)", vibe:["캐주얼","가성비"], flags:["가족친화"],
+    price:"함박 6,900~9,500원, 돈가스 5,900원", 
+    moodNote:"대학가 경양식, 깔끔·아담", 
+    why:"가격 대비 훌륭한 맛과 친절한 응대. 학생·가족 모두 만족",
+    wait:"선착순", waitNote:"점심시간 약간의 웨이팅, 회전 빠름",
+    reserve:"불가",
+    tips:["셀프 운영","늦은 시간까지 영업"],
+    map:"https://www.google.com/maps/search/?api=1&query=%EB%8F%88%EC%9B%8C%EB%A6%AC%EB%B9%84%ED%95%B4%ED%94%BC%20%EA%B4%91%EC%A3%BC"
+  },
+  {
+    name:"긴자 료코(수완)", area:"광산구 수완동", vibe:["캐주얼","감성"], flags:["가족친화"],
+    price:"데미그라스 함박 14,000원, 크림우동 10,000원(기본 1.5인분)",
+    moodNote:"일식 선술집 느낌, 오픈 키친", 
+    why:"푸짐한 양·진한 소스, 아이들에게도 재미있는 구성",
+    wait:"웨이팅빈번", waitNote:"점심·저녁 인기",
+    reserve:"불가",
+    tips:["미소국/김치 셀프","포장·배달 가능"],
+    map:"https://www.google.com/maps/search/?api=1&query=%EA%B8%B4%EC%9E%90%EB%A3%8C%EC%BD%94%20%EC%88%98%EC%99%84"
+  },
+  {
+    name:"처음봄", area:"서구 풍암동(풍암호수공원)", vibe:["캐주얼","감성"], flags:["가족친화"],
+    price:"함박 13,500원, 옛날돈가스 9,500원",
+    moodNote:"담백한 경양식 + 겉절이 기본 제공", 
+    why:"겉절이와 경양식의 색다른 궁합, 식사 후 호수공원 산책 코스",
+    wait:"예약가능", waitNote:"주말 점심 가족 손님 多",
+    reserve:"가능",
+    tips:["유아의자","4인 테이블 다수","저녁 주류 판매"],
+    map:"https://www.google.com/maps/search/?api=1&query=%EC%B2%98%EC%9D%8C%EB%B4%84%20%ED%92%8D%EC%95%94%EB%8F%99"
+  },
+  {
+    name:"온더블랙", area:"서구 치평동(상무지구)", vibe:["프리미엄","캐주얼"], flags:["가족친화"],
+    price:"돌판 스테이크 22,000원~, 규카츠정식 22,500원~",
+    moodNote:"400℃ 돌판 테이블 조리, 세련된 스테이크하우스", 
+    why:"숙성 육질과 연출의 재미로 아이도 흥미 ↑, 주차·환기·단체석",
+    wait:"웨이팅빈번", waitNote:"저녁 시간 웨이팅 흔함",
+    reserve:"가능(추천)",
+    tips:["반찬 셀프바","주차장","저녁 예약 권장"],
+    map:"https://www.google.com/maps/search/?api=1&query=%EC%98%A8%EB%8D%94%EB%B8%94%EB%9E%99%20%EC%83%81%EB%AC%B4"
+  },
+  {
+    name:"봉쥬르마망", area:"남구 봉선동", vibe:["감성","프리미엄"], flags:["가족친화"],
+    price:"와규 함박 11,500원, 스테이크류 2만원대~, 파스타 1만원대",
+    moodNote:"감성 인테리어·아늑한 조명, 패밀리/데이트 모두 OK", 
+    why:"와규 함박의 풍미·플레이팅 우수, 아이·어른 모두 만족",
+    wait:"예약가능", waitNote:"주말 저녁 예약 권장",
+    reserve:"가능",
+    tips:["주차 가능","인스타 전화 예약"],
+    map:"https://www.google.com/maps/search/?api=1&query=%EB%B4%89%EC%A5%AC%EB%A5%B4%EB%A7%88%EB%A7%9D%20%EA%B4%91%EC%A3%BC"
+  },
+  {
+    name:"김석봉스테이크", area:"서구 금호동(월드컵경기장)", vibe:["프리미엄"], flags:[],
+    price:"드라이에이징 코스(1인 3~4만원대, 2인 400g부터)",
+    moodNote:"프라이빗 홈다이닝(테이블 3·바좌석), 아주 조용함", 
+    why:"수비드+시어링 코스 퀄리티, 미식가들 사이 입소문",
+    wait:"예약가능", waitNote:"예약 전용·좌석 매우 한정",
+    reserve:"필수",
+    tips:["유아 동반은 비권장일 수 있음","건물 뒤 주차"],
+    map:"https://www.google.com/maps/search/?api=1&query=%EA%B9%80%EC%84%9D%EB%B4%89%20%EC%8A%A4%ED%85%8C%EC%9D%B4%ED%81%AC%20%EA%B4%91%EC%A3%BC"
+  },
+  {
+    name:"행복경양식", area:"동구 동명동(동리단길)", vibe:["복고","감성"], flags:["가족친화"],
+    price:"함박 15,000원, 옛날돈가스 12,000원",
+    moodNote:"엔틱 소품·아치형 소파, 1980s 경양식 감성", 
+    why:"스프·모닝빵·케첩스파게티까지 추억 세트, 양·가성비 좋음",
+    wait:"선착순", waitNote:"점심 웨이팅 드뭄(주말 저녁 약간)",
+    reserve:"무",
+    tips:["근처 공영주차장","식사 후 카페 코스"],
+    map:"https://www.google.com/maps/search/?api=1&query=%ED%96%89%EB%B3%B5%EA%B2%BD%EC%96%91%EC%8B%9D%20%EB%8F%99%EB%AA%85%EB%8F%99"
+  }
+];
+
+const list = document.getElementById('list');
+const empty = document.getElementById('empty');
+const q = document.getElementById('q');
+const mood = document.getElementById('mood');
+const waitSel = document.getElementById('wait');
+
+function chip(text){ return `<span class="chip">${text}</span>` }
+function badge(text){ return `<span class="badge">${text}</span>` }
+function pill(text, warn=false){ return `<span class="pill ${warn?'warn':''}">${text}</span>` }
+
+function render(items){
+  list.innerHTML = items.map(it=>`
+    <article class="card" data-name="${it.name}" data-area="${it.area}" data-vibe="${it.vibe.join(',')}" data-wait="${it.wait}">
+      <div class="top">
+        <div style="flex:1">
+          <div class="title">🥩 ${it.name} ${badge(it.area)}</div>
+          <div class="loc">${it.moodNote}</div>
+          <div class="chips">
+            ${it.vibe.map(chip).join('')}
+            ${(it.flags||[]).map(chip).join('')}
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="row"><div class="key">대표가격</div><div class="val">${it.price}</div></div>
+        <div class="row"><div class="key">추천이유</div><div class="val">${it.why}</div></div>
+        <div class="row"><div class="key">팁</div><div class="val">${(it.tips||[]).map(chip).join(' ')||'-'}</div></div>
+        <div class="row"><div class="key">예약/대기</div><div class="val">
+          ${it.reserve==='필수'?pill('📞 예약 필수'): it.reserve==='가능'?pill('📞 예약 가능'):pill('🚶 선착순')}
+          ${it.wait==='웨이팅빈번'?pill('⏳ 인기시간 웨이팅', true):''}
+        </div></div>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="${it.map}" target="_blank" rel="noopener">📍 지도 열기</a>
+        <button class="btn secondary" onclick="navigator.share? navigator.share({title:'${it.name}', text:'${it.name} 가볼까? 😊', url:'${it.map}'}): window.open('${it.map}','_blank')">🤝 공유</button>
+      </div>
+    </article>
+  `).join('');
+  empty.style.display = items.length? 'none':'block';
+}
+
+function filter(){
+  const term = q.value.trim().toLowerCase();
+  const vibe = mood.value;
+  const w = waitSel.value;
+  const res = DATA.filter(it=>{
+    const hay = [it.name,it.area,it.moodNote,it.why,it.price,...it.vibe,(it.flags||[]),(it.tips||[])].join(' ').toLowerCase();
+    if(term && !hay.includes(term)) return false;
+    if(vibe && !it.vibe.includes(vibe)) return false;
+    if(w){
+      if(w==='예약가능' && !(it.reserve==='가능' || it.reserve==='필수')) return false;
+      if(w==='웨이팅빈번' && it.wait!=='웨이팅빈번') return false;
+      if(w==='선착순' && it.wait!=='선착순') return false;
+    }
+    return true;
+  });
+  render(res);
+}
+
+[q, mood, waitSel].forEach(el=>el.addEventListener('input', filter));
+render(DATA);
+</script>
+</body>
+</html>
